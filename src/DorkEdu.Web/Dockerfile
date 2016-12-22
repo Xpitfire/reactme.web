@@ -13,4 +13,4 @@ RUN ["dotnet", "build"]
 
 EXPOSE 59058/tcp
 
-ENTRYPOINT ["dotnet", "run", "--server.urls", "http://127.0.0.1:59058"]
+ENTRYPOINT ["dotnet", "run", "--server.urls", "http://0.0.0.0:59058"]
