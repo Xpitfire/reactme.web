@@ -2,6 +2,6 @@
 
 @Component({
     selector: 'my-app',
-    template: '<h1>My First Angular App</h1>'
+    template: '<h1>dork.edu will teach you how to hack!</h1>'
 })
 export class AppComponent { }
