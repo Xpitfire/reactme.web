@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:latest
+FROM microsoft/dotnet:1.0-runtime-deps
 
 RUN apt-get update
 RUN apt-get install -y build-essential nodejs nodejs-legacy
