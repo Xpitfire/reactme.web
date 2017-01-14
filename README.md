@@ -1,5 +1,5 @@
 # dork.web
-Backend for [dork.chat](https://github.com/Xpitfire/dork.chat/wiki)
+Backend for [dork.app](https://github.com/Xpitfire/dork.app/wiki)
 
 [![Build Status](https://travis-ci.com/Xpitfire/dork.web.svg?token=sHWssDoyyNFRZYWr8UQ5&branch=master)](https://travis-ci.com/Xpitfire/dork.web)
 

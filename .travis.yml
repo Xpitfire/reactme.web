@@ -5,3 +5,5 @@ mono: none
 dotnet: 1.0.0-preview2-003121
 script:
   - ./build.sh --quiet verify
+notifications:
+  slack: teamdorkaholics:waf6WiEhecMtC4t7N1Ju7xJS
