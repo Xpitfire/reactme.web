@@ -8,7 +8,7 @@
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
     <ProjectGuid>d3088e48-84d2-41b6-856e-bd320541fc8d</ProjectGuid>
-    <RootNamespace>DorkEdu.Web</RootNamespace>
+    <RootNamespace>Dork.Web</RootNamespace>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup>

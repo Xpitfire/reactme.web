@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace DorkEdu.Web
+namespace Dork.Web
 {
     public class Program
     {

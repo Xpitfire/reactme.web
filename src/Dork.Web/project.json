@@ -70,6 +70,6 @@
   },
 
   "tooling": {
-    "defaultNamespace": "DorkEdu.Web"
+    "defaultNamespace": "Dork.Web"
   }
 }

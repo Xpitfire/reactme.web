@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DorkEdu.Web", "DorkEdu.Web\DorkEdu.Web.xproj", "{D3088E48-84D2-41B6-856E-BD320541FC8D}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Dork.Web", "Dork.Web\Dork.Web.xproj", "{D3088E48-84D2-41B6-856E-BD320541FC8D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

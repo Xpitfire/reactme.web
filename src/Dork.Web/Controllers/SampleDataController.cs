@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DorkEdu.Web.Controllers
+namespace Dork.Web.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller
