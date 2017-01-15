@@ -52,18 +52,6 @@ namespace Dork.Web
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
-                    HotModuleReplacement = true
-                });
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-            }
-
             app.UseStaticFiles();
 
             // Enabling swagger file
