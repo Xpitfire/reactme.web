@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dork.Core.Domain
+namespace Dork.Core.Domain.Asset
 {
     public class Video : IAsset
     {

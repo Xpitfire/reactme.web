@@ -32,6 +32,8 @@ namespace Dork.Web
             // Add framework services.
             services.AddMvc();
 
+            services.AddLogging();
+            
             // Adding swagger generation with default settings
             services.AddSwaggerGen(options => {
                 options.SingleApiVersion(new Info
@@ -74,11 +76,11 @@ namespace Dork.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Chat}/{action=Index}/{id?}");
 
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
-                    defaults: new { controller = "Home", action = "Index" });
+                    defaults: new { controller = "Chat", action = "Index" });
             });
         }
     }

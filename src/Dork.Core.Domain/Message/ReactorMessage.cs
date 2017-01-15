@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dork.Core.Domain
+namespace Dork.Core.Domain.Message
 {
-    public class Reactor : MessageBase
+    public class ReactorMessage : MessageBase
     {
-        public override IAsset Asset { get; set; }
     }
 }
