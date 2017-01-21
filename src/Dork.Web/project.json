@@ -22,8 +22,7 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-    "Swashbuckle": "6.0.0-beta901",
-    "Dork.Core.Domain": "1.0.0-*"
+    "Swashbuckle": "6.0.0-beta901"
   },
 
   "tools": {
@@ -35,10 +34,14 @@
   "frameworks": {
     "netcoreapp1.0": {
       "dependencies": {
+        "Dork.Core.Domain": {
+          "target": "project"
+        }
+
       },
       "imports": [
         "dotnet5.6",
-        "portable-net45+win8"
+        "portable-net45+netstandard1.6"
       ]
     }
   },

@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B8A4AE9-6D30-4312-9A3C-FEA2C587AC4B}</ProjectGuid>
+    <ProjectGuid>{526D15B6-2268-4A34-8A88-34FD0D4B3BAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Dork.Core.Common</RootNamespace>
-    <AssemblyName>Dork.Core.Common</AssemblyName>
+    <RootNamespace>Dork.Core.Domain</RootNamespace>
+    <AssemblyName>Dork.Core.Domain</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -34,6 +34,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="project.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Asset\IAsset.cs" />
+    <Compile Include="Asset\Image.cs" />
+    <Compile Include="Asset\Video.cs" />
+    <Compile Include="Message\ActorMessage.cs" />
+    <Compile Include="Message\IMessage.cs" />
+    <Compile Include="Message\MessageBase.cs" />
+    <Compile Include="Message\ReactorMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

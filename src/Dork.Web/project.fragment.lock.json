@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "Dork.Core.Domain/1.0.0": {
+      "type": "project",
+      "framework": ".NETCoreApp,Version=v1.0",
+      "compile": {
+        "bin/Debug/Dork.Core.Domain.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/Dork.Core.Domain.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Dork.Core.Domain.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}
