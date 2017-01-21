@@ -1,8 +1,7 @@
-{
+﻿{
   "version": "1.0.0-*",
 
   "dependencies": {
-    "Dork.Core.Domain": "1.0.0-*",
     "NETStandard.Library": "1.6.0"
   },
 

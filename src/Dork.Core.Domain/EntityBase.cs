@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dork.Core.Domain
 {
-    public abstract class EntityBase
+    public abstract class EntityBase : IEntity
     {
         public string Id { get; set; }
 
