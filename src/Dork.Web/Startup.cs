@@ -1,14 +1,12 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Swashbuckle.Swagger.Model;
 
 namespace Dork.Web
 {
@@ -19,46 +17,44 @@ namespace Dork.Web
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+
+            if (env.IsEnvironment("Development"))
+            {
+                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
+                builder.AddApplicationInsightsSettings(developerMode: true);
+            }
+
+            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
         public IConfigurationRoot Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddApplicationInsightsTelemetry(Configuration);
+
             services.AddMvc();
 
-            services.AddLogging();
-            
-            // Adding swagger generation with default settings
-            services.AddSwaggerGen(options => {
-                options.SingleApiVersion(new Info
-                {
-                    Version = "v1",
-                    Title = "Auth0 Swagger Sample API",
-                    Description = "API Sample made for Auth0",
-                    TermsOfService = "None"
-                });
-            });
+            // Add our repository type
+            //services.AddSingleton<ITodoRepository, TodoRepository>();
+
+            // Inject an implementation of ISwaggerProvider with defaulted settings applied
+            services.AddSwaggerGen();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseStaticFiles();
+            app.UseApplicationInsightsRequestTelemetry();
 
-            // Enabling swagger file
-            app.UseSwagger();
-
-            // Enabling Swagger ui, consider doing it on Development env only
-            app.UseSwaggerUi();
+            app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseMvc(routes =>
             {
@@ -70,6 +66,12 @@ namespace Dork.Web
                     name: "spa-fallback",
                     defaults: new { controller = "Chat", action = "Index" });
             });
+
+            // Enable middleware to serve generated Swagger as a JSON endpoint
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
+            app.UseSwaggerUi();
         }
     }
 }
