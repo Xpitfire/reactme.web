@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Dork.Core.Domain;
 
 namespace Dork.Web
 {
@@ -48,7 +49,7 @@ namespace Dork.Web
             services.AddSwaggerGen();
 
             services.AddSingleton(Configuration);
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IEntityService<User>, EntityService<User>>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline

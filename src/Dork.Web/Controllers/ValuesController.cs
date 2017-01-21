@@ -11,9 +11,9 @@ namespace Dork.Web.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private readonly IUserService _service;
+        private readonly IEntityService<User> _service;
 
-        public ValuesController(IUserService service)
+        public ValuesController(IEntityService<User> service)
         {
             _service = service;
         }
