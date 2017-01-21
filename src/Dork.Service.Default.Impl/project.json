@@ -3,10 +3,9 @@
 
   "dependencies": {
     "NETStandard.Library": "1.6.0",
-    "MongoDB.Driver": "2.4.1",
-    "Microsoft.Extensions.Configuration.Abstractions": "1.0.0",
-    "Dork.Core.Domain": "1.0.0",
-    "Dork.Core.Dal": "1.0.0"
+    "Dork.Core.Service": "1.0.0",
+    "Dork.Core.Dal": "1.0.0",
+    "Dork.Dal.Mongo.Impl": "1.0.0"
   },
 
   "frameworks": {

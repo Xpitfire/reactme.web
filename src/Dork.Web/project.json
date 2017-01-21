@@ -18,9 +18,11 @@
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Swashbuckle": "6.0.0-beta902",
     "Microsoft.AspNetCore.SpaServices": "1.0.0-beta-000021",
-    "Dork.Core.Dal": "1.0.0-*",
-    "Dork.Core.Domain": "1.0.0-*",
-    "Dork.Core.Service": "1.0.0-*"
+    "Dork.Core.Dal": "1.0.0",
+    "Dork.Core.Domain": "1.0.0",
+    "Dork.Core.Service": "1.0.0",
+    "Dork.Dal.Mongo.Impl": "1.0.0",
+    "Dork.Service.Default.Impl": "1.0.0"
   },
 
   "tools": {
