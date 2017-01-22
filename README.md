@@ -18,7 +18,7 @@ docker start dorkweb
 
 * You can now use the following connection string for local testing: 
 ```
-mongodb://localhost:8181/swagger/ui
+http://localhost:8181/swagger/ui
 ```
 
 ## Important Links
