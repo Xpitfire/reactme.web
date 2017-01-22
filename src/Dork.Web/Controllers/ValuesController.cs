@@ -23,28 +23,28 @@ namespace Dork.Web.Controllers
         public IActionResult Get()
         {
             var data = _service.GetAll();
-            return Ok(data);
+            return Ok(data.Result);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(string id)
         {
-            return "value";
+            return Ok(_service.GetById(id).Result);
         }
 
         // POST api/values
         [HttpPost]
         public void Post([FromBody]User value)
         {
-            var data = _service.CreateElement(value);
+            var data = _service.CreateElement(value).Result;
         }
 
         // PUT api/values/5
         [HttpPut]
         public void Put([FromBody]User value)
         {
-            var data = _service.UpdateElement(value);
+            var data = _service.UpdateElement(value).Result;
         }
 
         // DELETE api/values/5
