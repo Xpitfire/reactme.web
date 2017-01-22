@@ -16,7 +16,7 @@ docker run -d -p 8181:5000 --name dorkweb xpitfire/dork.web
 docker start dorkweb
 ```
 
-* You can now use the following connection string for local testing: 
+* You can now use the following URL to access the REST service: 
 ```
 http://localhost:8181/swagger/ui
 ```
