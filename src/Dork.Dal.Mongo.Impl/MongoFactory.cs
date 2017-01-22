@@ -16,7 +16,7 @@ namespace Dork.Dal.Mongo.Impl
         /// <returns>Returns the default connectionstring from the configuration.json file.</returns>
         public static string GetDefaultConnectionString(IConfiguration config)
         {
-            return config["MongoConfiguration:Server"] + "/" + config["MongoConfiguration:Database"];
+            return $"{config["MongoConfiguration:Server"]}/{config["MongoConfiguration:Database"]}";
         }
 
         /// <summary>

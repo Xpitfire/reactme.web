@@ -40,11 +40,10 @@ namespace Dork.Dal.Mongo.Impl
         {
             _collection = MongoFactory<TKey>.GetCollectionFromUrl<T>(url, collectionName);
         }
-
+        
         #endregion
 
-
-
+        
         public IEnumerator<T> GetEnumerator()
         {
             return _collection.AsQueryable().GetEnumerator();
@@ -120,10 +119,6 @@ namespace Dork.Dal.Mongo.Impl
 
     public class Repository<T> : Repository<T, string>, IRepository<T> where T : IEntity<string>
     {
-        // public MongoRepository() : base() { }
-
-
-
         /// <summary>
         /// Initializes a new instance of the MongoRepository class.
         /// Uses the Default App/Web.Config connectionstrings to fetch the connectionString and Database name.

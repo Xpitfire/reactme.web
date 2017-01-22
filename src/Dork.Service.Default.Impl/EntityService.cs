@@ -5,18 +5,16 @@ using System.Threading.Tasks;
 using Dork.Core.Dal;
 using Dork.Core.Domain;
 using Dork.Core.Service;
-using Dork.Dal.Mongo.Impl;
 
 namespace Dork.Service.Default.Impl
 {
     public class EntityService<T> : IEntityService<T> where T : IEntity
     {
         public readonly IRepository<T> _repo;
-
-        // TODO: Inject Repo
-        public EntityService()
+        
+        public EntityService(IRepository<T> repo)
         {
-            _repo = new Repository<T>("mongodb://localhost:27017/local");
+            _repo = repo;
         }
 
         public async Task<IEnumerable<T>> GetAll()

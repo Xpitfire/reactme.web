@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Dork.Core.Domain;
+using Dork.Core.Dal;
+using Dork.Dal.Mongo.Impl;
 
 namespace Dork.Web
 {
@@ -50,6 +52,12 @@ namespace Dork.Web
 
             services.AddSingleton(Configuration);
             services.AddTransient<IEntityService<User>, EntityService<User>>();
+
+            // initialize repositories
+            var connectionString = 
+                $"{Configuration["MongoConfiguration:Server"]}/{Configuration["MongoConfiguration:Database"]}";
+
+            services.AddTransient<IRepository<User>>(x => new Repository<User>($"{connectionString}"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
