@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Dork.Core.Domain;
 using Dork.Core.Dal;
 using Dork.Dal.Mongo.Impl;
+using Dork.Web.Formatters;
 
 namespace Dork.Web
 {
@@ -42,7 +43,11 @@ namespace Dork.Web
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.InputFormatters.Insert(0,new JilInputFormatter());
+                options.OutputFormatters.Insert(0,new JilOutputFormatter());
+            });
 
             // Add our repository type
             //services.AddSingleton<ITodoRepository, TodoRepository>();
