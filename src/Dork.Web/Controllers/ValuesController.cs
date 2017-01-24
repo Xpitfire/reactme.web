@@ -20,37 +20,43 @@ namespace Dork.Web.Controllers
 
         // GET api/values
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var data = _service.GetAll();
-            return Ok(data.Result);
+            var data = await _service.GetAll();
+            return Ok(data);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        public async Task<IActionResult> Get(string id)
         {
-            return Ok(_service.GetById(id).Result);
+            return Ok(await _service.GetById(id));
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]User value)
+        public async Task<IActionResult> Post([FromBody]User value)
         {
-            var data = _service.CreateElement(value).Result;
+            var data = await _service.CreateElement(value);
+            return Ok("Element created");
         }
 
         // PUT api/values/5
         [HttpPut]
-        public void Put([FromBody]User value)
+        public async Task<IActionResult> Put([FromBody]User value)
         {
-            var data = _service.UpdateElement(value).Result;
+            var linesWritten = await _service.UpdateElement(value);
+            if (linesWritten == 1) return Ok("Element Updated");
+            return StatusCode(409, "Couldn't update Element");
+
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
+            await _service.DeleteElement(id);
+            return Ok("Element deleted");
         }
     }
 }
