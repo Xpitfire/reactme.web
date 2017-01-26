@@ -30,7 +30,12 @@ namespace Dork.Web.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
-            return Ok(_service.GetById(id).Result);
+            //return Ok(_service.GetById(id).Result);
+            return Ok(new User
+            {
+                Id = "1",
+                Username = "xpitfire"
+            });
         }
 
         // POST api/values

@@ -11,5 +11,17 @@ namespace Dork.Core.Domain
         public string LastName { get; set; }
         public ContentBase Image { get; set; }
         public IList<User> Friends { get; set; }
+        public IList<InvitationStatus> InvitationOptions { get; set; }
+        public ContactInfo ContactInfo { get; set; }
+    }
+
+    public enum InvitationStatus
+    {
+        NativeAppUser,
+        InvitedByEmail,
+        InvitedBySms,
+        InvitedByWhatsApp,
+        InvitedByFacebook,
+        InvitedByGooglePlus,
     }
 }

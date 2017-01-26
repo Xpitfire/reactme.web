@@ -8,8 +8,8 @@ namespace Dork.Core.Domain
     public class ContentBase : EntityBase
     {
         public string MimeType { get; set; }
-        public int size { get; set; }
-        public string MediabId { get; set; }
+        public int Size { get; set; }
+        public string MediaId { get; set; }
         public string ThumbnailId { get; set; }
     }
 

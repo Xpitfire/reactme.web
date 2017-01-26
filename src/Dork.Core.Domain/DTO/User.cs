@@ -11,6 +11,7 @@ namespace Dork.Core.Domain
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public Profile Profile { get; set; }
+        public UserStatus Status { get; set; }
         
         public override bool Equals(object obj)
         {
@@ -28,5 +29,13 @@ namespace Dork.Core.Domain
                 return Username?.GetHashCode() ?? 0;
             }
         }
+    }
+
+    public enum UserStatus
+    {
+        Active,
+        Deactivated,
+        Deleted,
+        Blocked
     }
 }

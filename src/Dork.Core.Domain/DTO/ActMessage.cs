@@ -9,5 +9,12 @@ namespace Dork.Core.Domain
     {
         public IList<User> Receivers { get; set; }
         public string Description { get; set; }
+        public ActType Type { get; set; }
+    }
+
+    public enum ActType
+    {
+        PrivateAct,
+        WildAct
     }
 }
