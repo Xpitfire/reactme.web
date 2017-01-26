@@ -30,16 +30,11 @@ namespace Dork.Web.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
         {
-<<<<<<< HEAD
-            //return Ok(_service.GetById(id).Result);
             return Ok(new User
             {
                 Id = "1",
                 Username = "xpitfire"
             });
-=======
-            return Ok(await _service.GetById(id));
->>>>>>> 293c7c0979bdfe0b930baa31bda752d7fe377701
         }
 
         // POST api/values
