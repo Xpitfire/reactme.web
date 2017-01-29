@@ -28,4 +28,7 @@ http://localhost:8181/swagger/ui
 
 ## Online Deployment
 
-The application REST API is deployed and available via [Azure](http://dork-943e.azurewebsites.net/swagger/ui).
+The app REST API is deployed on Azure and available via the following URL:
+```
+http://dork-943e.azurewebsites.net/swagger/ui
+```
