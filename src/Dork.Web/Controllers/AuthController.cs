@@ -25,7 +25,11 @@ namespace Dork.Web.Controllers
             return Ok(new User
             {
                 Id = "1",
-                Username = "xpitfire"
+                Username = "xpitfire", 
+                Email = "test@user.com",
+                PasswordHash = "xxdkdjflckj3i02+=",
+                ProfileId = "xpitfireprofile",
+                Status = UserStatus.Active
             });
         }
 
