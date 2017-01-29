@@ -25,3 +25,7 @@ http://localhost:8181/swagger/ui
 * [Read Documentation](https://github.com/Xpitfire/dork.web/wiki)
 * [Manage Project](https://github.com/Xpitfire/dork.web/projects)
 * [Chat on Slack](https://dorkedu.slack.com/)
+
+## Online Deployment
+
+The application REST API is deployed and available via [Azure](http://dork-943e.azurewebsites.net/swagger/ui).
