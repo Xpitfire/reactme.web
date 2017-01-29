@@ -1,0 +1,15 @@
+﻿{
+  "version": "1.0.0",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Dork.Core.Service": "1.0.0",
+    "Dork.Core.Dal": "1.0.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
