@@ -1,47 +1,39 @@
-﻿using System;
+﻿using Dork.Core.Domain;
+using Dork.Core.Service;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Dork.Core.Domain;
-using Dork.Core.Service;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Dork.Web.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class ProfileController : Controller
     {
-        private readonly IEntityService<User> _service;
+        private readonly IProfileService _profileService;
+        private readonly IEntityService<User> _userService;
 
-        public ValuesController(IEntityService<User> service)
+        public ProfileController(
+            IEntityService<User> userService, 
+            IProfileService profileService)
         {
-            _service = service;
+            _profileService = profileService;
         }
-
+        
         // GET api/values
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var data = await _service.GetAll();
+            var data = await _userService.GetAllAsync();
             return Ok(data);
-        }
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string id)
-        {
-            return Ok(new User
-            {
-                Id = "1",
-                Username = "xpitfire"
-            });
         }
 
         // POST api/values
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]User value)
         {
-            var data = await _service.CreateElement(value);
+            var data = await _userService.CreateElementAsync(value);
             return Ok("Element created");
         }
 
@@ -49,7 +41,7 @@ namespace Dork.Web.Controllers
         [HttpPut]
         public async Task<IActionResult> Put([FromBody]User value)
         {
-            var linesWritten = await _service.UpdateElement(value);
+            var linesWritten = await _userService.UpdateElementAsync(value);
             if (linesWritten == 1) return Ok("Element Updated");
             return StatusCode(409, "Couldn't update Element");
 
@@ -59,8 +51,9 @@ namespace Dork.Web.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(string id)
         {
-            await _service.DeleteElement(id);
+            await _userService.DeleteElementAsync(id);
             return Ok("Element deleted");
         }
+
     }
 }

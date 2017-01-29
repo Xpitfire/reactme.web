@@ -22,6 +22,7 @@
     "Dork.Core.Domain": "1.0.0",
     "Dork.Core.Service": "1.0.0",
     "Dork.Dal.Mongo.Impl": "1.0.0",
+    "Dork.Service.Moc.Impl": "1.0.0",
     "Dork.Service.Default.Impl": "1.0.0",
     "System.Reflection": "4.3.0",
     "Jil": "2.15.0"

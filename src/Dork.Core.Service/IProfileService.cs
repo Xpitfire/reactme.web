@@ -8,7 +8,6 @@ namespace Dork.Core.Service
 {
     public interface IProfileService
     {
-        IEnumerable<User> GetFriendProfilesFromUser(User user);
-
+        Task<IEnumerable<User>> GetFriendProfilesFromUserAsync(User user);
     }
 }

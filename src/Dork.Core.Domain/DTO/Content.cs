@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Dork.Core.Domain
 {
-    public class ContentBase : EntityBase
+    public class Content : EntityBase
     {
         public string MimeType { get; set; }
         public int Size { get; set; }

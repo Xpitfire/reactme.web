@@ -8,10 +8,10 @@ namespace Dork.Core.Service
 {
     public interface IAuthService
     {
-        AuthState Register(User user);
-        AuthState AuthViaFacebook(User user);
-        AuthState AuthViaGooglePlus(User user);
-        AuthState Login(User user);
-        AuthState ResetPassword(string email);
+        Task<AuthState> RegisterAsync(User user);
+        Task<AuthState> AuthViaFacebookAsync(User user);
+        Task<AuthState> AuthViaGooglePlusAsync(User user);
+        Task<AuthState> LoginAsync(User user);
+        Task<AuthState> ResetPasswordAsync(string email);
     }
 }

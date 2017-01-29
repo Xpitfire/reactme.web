@@ -10,7 +10,7 @@ namespace Dork.Core.Domain
         public string Username { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public Profile Profile { get; set; }
+        public string ProfileId { get; set; }
         public UserStatus Status { get; set; }
         
         public override bool Equals(object obj)
@@ -34,7 +34,7 @@ namespace Dork.Core.Domain
     public enum UserStatus
     {
         Active,
-        Deactivated,
+        Inactive,
         Deleted,
         Blocked
     }

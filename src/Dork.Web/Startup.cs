@@ -13,6 +13,7 @@ using Dork.Core.Domain;
 using Dork.Core.Dal;
 using Dork.Dal.Mongo.Impl;
 using Dork.Web.Formatters;
+using Dork.Service.Moc.Impl;
 
 namespace Dork.Web
 {
@@ -49,14 +50,14 @@ namespace Dork.Web
                 options.OutputFormatters.Insert(0,new JilOutputFormatter());
             });
 
-            // Add our repository type
-            //services.AddSingleton<ITodoRepository, TodoRepository>();
-
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             services.AddSwaggerGen();
 
             services.AddSingleton(Configuration);
-            services.AddTransient<IEntityService<User>, EntityService<User>>();
+            services.AddTransient<IEntityService<User>, EntityServiceMoc<User>>();
+            services.AddTransient<IAuthService, AuthServiceMoc>();
+            services.AddTransient<IMessageService, MessageServiceMoc>();
+            services.AddTransient<IProfileService, ProfileServiceMoc>();
 
             // initialize repositories
             var connectionString = 

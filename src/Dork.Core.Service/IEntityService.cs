@@ -8,12 +8,12 @@ namespace Dork.Core.Service
 {
     public interface IEntityService<T> where T : IEntity
     {
-        Task<IEnumerable<T>> GetAll();
-        Task<T> GetById(string id);
+        Task<IEnumerable<T>> GetAllAsync();
+        Task<T> GetByIdAsync(string id);
 
-        Task<long> CreateElement(T entity);
-        Task<long> UpdateElement(T entity);
+        Task<long> CreateElementAsync(T entity);
+        Task<long> UpdateElementAsync(T entity);
 
-        Task<long> DeleteElement(string id);
+        Task<long> DeleteElementAsync(string id);
     }
 }

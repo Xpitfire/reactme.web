@@ -17,6 +17,7 @@
     <ProjectReference Include="..\Dork.Core.Service\Dork.Core.Service.csproj" />
     <ProjectReference Include="..\Dork.Dal.Mongo.Impl\Dork.Dal.Mongo.Impl.csproj" />
     <ProjectReference Include="..\Dork.Service.Default.Impl\Dork.Service.Default.Impl.csproj" />
+    <ProjectReference Include="..\Dork.Service.Moc.Impl\Dork.Service.Moc.Impl.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Jil" Version="2.15.0" />

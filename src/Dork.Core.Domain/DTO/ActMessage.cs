@@ -7,7 +7,7 @@ namespace Dork.Core.Domain
 {
     public class ActMessage : MessageBase
     {
-        public IList<User> Receivers { get; set; }
+        public IList<string> ReceiverIds { get; set; }
         public string Description { get; set; }
         public ActType Type { get; set; }
     }
