@@ -25,7 +25,10 @@
     "Dork.Service.Moc.Impl": "1.0.0",
     "Dork.Service.Default.Impl": "1.0.0",
     "System.Reflection": "4.3.0",
-    "Jil": "2.15.0"
+    "Jil": "2.15.0",
+    "Autofac": "4.3.0",
+    "Autofac.Extensions.DependencyInjection": "4.0.0",
+    "AutoMapper": "5.0.2"
   },
 
   "tools": {
