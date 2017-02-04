@@ -1,9 +1,8 @@
 ﻿using Dork.Core.Service;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Dork.Core.Domain;
 using System.Threading.Tasks;
+using System;
 
 namespace Dork.Service.Moc.Impl
 {
@@ -35,6 +34,11 @@ namespace Dork.Service.Moc.Impl
                 IEnumerable<ActMessage> res = new List<ActMessage> { (ActMessage)StaticDataCollection.Messages["act:xpitfire@flow"] };
                 return res;
             });
+        }
+
+        public Task<ActMessage> PersistActMessageAsync(ActMessage message)
+        {
+            throw new NotImplementedException();
         }
 
         public Task<ReactMessage> PersistReactMessageAsync(ReactMessage message)

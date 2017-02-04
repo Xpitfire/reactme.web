@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace Dork.Web.Controllers
 {
     [Route("api/[controller]")]
+    [Controller]
     public class ProfileController : Controller
     {
         private readonly IProfileService _profileService;
@@ -19,6 +20,7 @@ namespace Dork.Web.Controllers
             IProfileService profileService)
         {
             _profileService = profileService;
+            _userService = userService;
         }
         
         // GET api/values

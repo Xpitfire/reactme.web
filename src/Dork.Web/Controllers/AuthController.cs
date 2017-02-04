@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Dork.Web.Controllers
 {
     [Route("api/[controller]")]
+    [Controller]
     public class AuthController : Controller
     {
         private readonly IAuthService _authService;

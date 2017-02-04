@@ -7,7 +7,7 @@
     <PackageTargetFallback Condition=" '$(TargetFramework)' == 'netcoreapp1.0' ">$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="wwwroot\**\*;**\*.cshtml;appsettings.json;web.config">
+    <Content Include="wwwroot\**\*;**\*.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
@@ -20,6 +20,9 @@
     <ProjectReference Include="..\Dork.Service.Moc.Impl\Dork.Service.Moc.Impl.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.3.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.0.0" />
+    <PackageReference Include="AutoMapper" Version="5.0.2" />
     <PackageReference Include="Jil" Version="2.15.0" />
     <PackageReference Include="Microsoft.NETCore.App">
       <Version>1.0.1</Version>

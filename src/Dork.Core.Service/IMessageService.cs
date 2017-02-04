@@ -11,6 +11,7 @@ namespace Dork.Core.Service
         Task<IEnumerable<ActMessage>> GetRecentActsByUserProfileAsync(User userProfile, Page paging);
         Task<Content> GetActContentByContentIdAsync(string id);
         Task<ReactMessage> PersistReactMessageAsync(ReactMessage message);
+        Task<ActMessage> PersistActMessageAsync(ActMessage message);
         Task<IDictionary<User, IEnumerable<ActMessage>>> GetActUpdatesFromFriendListAsync(User user);
         Task<IEnumerable<MessageBase>> GetMessageHistoryFromUsersAsync(User user1, User user2);
     }

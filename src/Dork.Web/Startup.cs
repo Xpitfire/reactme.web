@@ -14,6 +14,8 @@ using Dork.Core.Dal;
 using Dork.Dal.Mongo.Impl;
 using Dork.Web.Formatters;
 using Dork.Service.Moc.Impl;
+using Autofac;
+using Microsoft.Extensions.DependencyModel;
 
 namespace Dork.Web
 {
@@ -22,25 +24,27 @@ namespace Dork.Web
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
+                .AddInMemoryCollection(new[] { new KeyValuePair<string, string>("Application:Path", env.ContentRootPath) })
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
 
             if (env.IsEnvironment("Development"))
             {
                 // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }
-
-            builder.AddEnvironmentVariables();
+            
             Configuration = builder.Build();
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            var builder = new ContainerBuilder();
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
@@ -54,16 +58,24 @@ namespace Dork.Web
             services.AddSwaggerGen();
 
             services.AddSingleton(Configuration);
-            services.AddTransient<IEntityService<User>, EntityServiceMoc<User>>();
+            /*services.AddTransient<IEntityService<User>, EntityService<User>>();
+            services.AddTransient<IEntityService<Profile>, EntityService<Profile>>();
             services.AddTransient<IAuthService, AuthServiceMoc>();
             services.AddTransient<IMessageService, MessageServiceMoc>();
-            services.AddTransient<IProfileService, ProfileServiceMoc>();
+            services.AddTransient<IProfileService, ProfileServiceMoc>();*/
+            AutomaticRegistrar.RegisterServices(services);
 
             // initialize repositories
+            /*
             var connectionString = 
                 $"{Configuration["MongoConfiguration:Server"]}/{Configuration["MongoConfiguration:Database"]}";
 
             services.AddTransient<IRepository<User>>(x => new Repository<User>($"{connectionString}"));
+            services.AddTransient<IRepository<Profile>>(x => new Repository<Profile>($"{connectionString}"));
+            */
+            RegisterAutoMapper(builder);
+
+            return AutomaticRegistrar.RegisterAutofac(services, builder);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -92,6 +104,11 @@ namespace Dork.Web
 
             // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
             app.UseSwaggerUi();
+        }
+
+        private void RegisterAutoMapper(ContainerBuilder builder)
+        {
+            AutoMapperConfiguration.Configure(builder, DependencyContext.Default);
         }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace Dork.Web.Controllers
 {
     [Route("api/[controller]")]
+    [Controller]
     public class MessageController : Controller
     {
         private readonly IMessageService _messageService;
