@@ -16,6 +16,8 @@ using Dork.Web.Formatters;
 using Dork.Service.Moc.Impl;
 using Autofac;
 using Microsoft.Extensions.DependencyModel;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace Dork.Web
 {
@@ -47,15 +49,34 @@ namespace Dork.Web
             var builder = new ContainerBuilder();
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
-
+            services.AddIdentityWithMongoStores($"{Configuration["MongoConfiguration:Server"]}/{Configuration["MongoConfiguration:Database"]}").AddDefaultTokenProviders();
             services.AddMvc(options =>
             {
                 options.InputFormatters.Insert(0,new JilInputFormatter());
                 options.OutputFormatters.Insert(0,new JilOutputFormatter());
             });
 
+            services.AddMvc(config =>
+            {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                config.Filters.Add(new AuthorizeFilter(policy));
+            });
+
+
+
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             services.AddSwaggerGen();
+            services.AddOptions();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 32;
+            });
+
 
             services.AddSingleton(Configuration);
             /*services.AddTransient<IEntityService<User>, EntityService<User>>();
@@ -87,6 +108,9 @@ namespace Dork.Web
             app.UseApplicationInsightsRequestTelemetry();
 
             app.UseApplicationInsightsExceptionTelemetry();
+
+
+            app.UseIdentity();
 
             app.UseMvc(routes =>
             {

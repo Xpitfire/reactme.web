@@ -16,6 +16,7 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
+    "Microsoft.AspNetCore.Identity.MongoDB": "1.0.2",
     "Swashbuckle": "6.0.0-beta902",
     "Microsoft.AspNetCore.SpaServices": "1.0.0-beta-000021",
     "Dork.Core.Dal": "1.0.0",
