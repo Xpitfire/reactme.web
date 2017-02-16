@@ -48,7 +48,7 @@ namespace Dork.Service.Moc.Impl
             Profiles[profileId] = new Profile
             {
                 Id = profileId,
-                InvitationOptions = { InvitationStatus.InvitedBySms }
+                InvitationOptions = InvitationStatus.InvitedBySms
             };
             Users[userId] = new User
             {
@@ -96,7 +96,7 @@ namespace Dork.Service.Moc.Impl
                 Id = profileId,
                 FirstName = "Florian",
                 LastName = "Wurm",
-                InvitationOptions = { InvitationStatus.NativeAppUser },
+                InvitationOptions = InvitationStatus.NativeAppUser,
                 FriendIds = { "xpitfire", "unknown1" },
                 ContactInfo = ContactInfos[contactInfoId],
                 Image = Contents[contentId]
@@ -152,7 +152,7 @@ namespace Dork.Service.Moc.Impl
                 Id = profileId,
                 FirstName = "Marius",
                 LastName = "Dinu",
-                InvitationOptions = { InvitationStatus.NativeAppUser },
+                InvitationOptions = InvitationStatus.NativeAppUser,
                 FriendIds = { "flow" },
                 ContactInfo = ContactInfos[contactInfoId],
                 Image = Contents[contentId]

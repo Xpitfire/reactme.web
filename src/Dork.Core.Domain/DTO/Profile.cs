@@ -11,7 +11,7 @@ namespace Dork.Core.Domain
         public string LastName { get; set; }
         public Content Image { get; set; }
         public IList<string> FriendIds { get; set; }
-        public IList<InvitationStatus> InvitationOptions { get; set; }
+        public InvitationStatus InvitationOptions { get; set; }
         public ContactInfo ContactInfo { get; set; }
     }
 

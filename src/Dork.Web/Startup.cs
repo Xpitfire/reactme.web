@@ -18,6 +18,8 @@ using Autofac;
 using Microsoft.Extensions.DependencyModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Dork.Web
 {
@@ -62,7 +64,13 @@ namespace Dork.Web
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
 
-
+            // Configure enum to string converter for JSON parsing
+            JsonConvert.DefaultSettings = (() =>
+            {
+                var settings = new JsonSerializerSettings();
+                settings.Converters.Add(new StringEnumConverter { CamelCaseText = true });
+                return settings;
+            });
 
             // Inject an implementation of ISwaggerProvider with defaulted settings applied
             services.AddSwaggerGen();
@@ -76,7 +84,6 @@ namespace Dork.Web
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 32;
             });
-
 
             services.AddSingleton(Configuration);
             /*services.AddTransient<IEntityService<User>, EntityService<User>>();
