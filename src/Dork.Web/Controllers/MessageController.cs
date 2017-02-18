@@ -19,10 +19,13 @@ namespace Dork.Web.Controllers
             _messageService = messageService;
         }
 
-        [HttpGet("acts")]
-        public Task<IEnumerable<ActMessage>> GetActMessages()
+        [HttpPost]
+        [Route("message/recent/act/{id}")]
+        [ProducesResponseType(typeof(IEnumerable<ActMessage>), 200)]
+        public IActionResult GetRecentActsByUserProfileAsync([FromBody] User user, [FromBody] Page page)
         {
-            return _messageService.GetRecentActsByUserProfileAsync(null, null);
+            var messages = _messageService.GetRecentActsByUserProfileAsync(user, page).Result;
+            return Ok(messages);
         }
     }
 }

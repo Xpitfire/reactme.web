@@ -54,6 +54,7 @@ namespace Dork.Web
             // Register data access
             builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerDependency();
             builder.RegisterGeneric(typeof(EntityService<>)).As(typeof(IEntityService<>)).InstancePerDependency();
+            builder.RegisterType<ProfileService>().As<IProfileService>();
 
             // Add services
             builder.Populate(services);

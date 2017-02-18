@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Dork.Core.Domain;
@@ -17,69 +18,57 @@ namespace Dork.Web.Controllers
     [Controller]
     public class AuthController : Controller
     {
-        // private readonly IAuthService _authService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        
 
-        public AuthController(/*IAuthService authService,*/ UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AuthController(UserManager<IdentityUser> userManager, 
+            SignInManager<IdentityUser> signInManager)
         {
-            //_authService = authService;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(string id)
-        {
-            return Ok(new User
-            {
-                Id = "1",
-                Username = "xpitfire", 
-                Email = "test@user.com",
-                PasswordHash = "xxdkdjflckj3i02+=",
-                ProfileId = "xpitfireprofile",
-                Status = UserStatus.Active
-            });
-        }
-
-
         [HttpPost]
         [AllowAnonymous]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginCredentials loginCredentials)
+        [ProducesResponseType(typeof(bool), 200)]
+        [ProducesResponseType(typeof(string), 400)]
+        [ProducesResponseType(typeof(string), 500)]
+        public IActionResult Login([FromBody] LoginCredentials loginCredentials)
         {
             try
             {
-                var result = await _signInManager.PasswordSignInAsync(loginCredentials.Username, loginCredentials.PasswordHash, false, false);
-                await SignInUserStringWithCookieProps(loginCredentials.Username);
-                if (result.Succeeded)
-                    return Ok("Logged In");
-                return StatusCode((int)HttpStatusCode.Conflict, "Login Failed");
+                var result = _signInManager.PasswordSignInAsync(
+                    loginCredentials.Username, loginCredentials.PasswordHash, false, false).Result;
+                SignInUserStringWithCookieProps(loginCredentials.Username);
+                return result.Succeeded 
+                    ? Ok(true) 
+                    : StatusCode((int)HttpStatusCode.Conflict, "Login Failed");
             }
-            catch
+            catch (Exception e)
             {
+                Debug.WriteLine(e);
                 return StatusCode((int)HttpStatusCode.InternalServerError, "Internal Error");
             }
         }
 
         [HttpPost]
         [Route("logout")]
-        public async Task<IActionResult> Logout()
+        [ProducesResponseType(typeof(void), 200)]
+        public IActionResult Logout()
         {
-            await _signInManager.SignOutAsync();
-            return Ok("logged out");
+            _signInManager.SignOutAsync().RunSynchronously();
+            return Ok();
         }
                 
 
-        private async Task SignInIdentityUserWithCookieProps(IdentityUser user)
+        private void SignInIdentityUserWithCookieProps(IdentityUser user)
         {
             //Cookie Props
-            await _signInManager.SignInAsync(user, false);
+            _signInManager.SignInAsync(user, false);
         }
 
-        private async Task SignInUserStringWithCookieProps(string username)
+        private void SignInUserStringWithCookieProps(string username)
         {
             var res = from u in _userManager.Users
                       where u.UserName == username
@@ -88,7 +77,7 @@ namespace Dork.Web.Controllers
             var usr = res.FirstOrDefault();
             if (usr != null)
             {
-                await SignInIdentityUserWithCookieProps(usr);
+                SignInIdentityUserWithCookieProps(usr);
             }
         }
 

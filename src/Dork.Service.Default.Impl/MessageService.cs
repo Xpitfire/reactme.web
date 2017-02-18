@@ -41,18 +41,18 @@ namespace Dork.Service.Default.Impl
         {
             var resultDictionary = new Dictionary<User, IEnumerable<ActMessage>>();
             var profile = await _profileRepository.GetByIdAsync(user.ProfileId);
-            var actList = await _actMessageRepository.GetAllAsync(x => x.ReceiverIds.Contains(user.Id));
+            var actResult = await _actMessageRepository.GetAllAsync(x => x.ReceiverIds.Contains(user.Id));
+            var actList = actResult as IList<ActMessage> ?? actResult.ToList();
 
             foreach (var friendId in profile.FriendIds)
             {
                 var acts = from act in actList
                            where act.SenderId == friendId && act.DateViewed == 0
                            select act;
-                if (acts.Any())
-                {
-                    var friend = await _userRepository.GetByIdAsync(friendId);
-                    resultDictionary.Add(friend, acts);
-                }
+                var actMessages = acts as IList<ActMessage> ?? acts.ToList();
+                if (!actMessages.Any()) continue;
+                var friend = await _userRepository.GetByIdAsync(friendId);
+                resultDictionary.Add(friend, actMessages);
             }
             return resultDictionary;
         }

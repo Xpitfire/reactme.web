@@ -13,48 +13,35 @@ namespace Dork.Web.Controllers
     public class ProfileController : Controller
     {
         private readonly IProfileService _profileService;
-        private readonly IEntityService<User> _userService;
+        private readonly IEntityService<User> _userEntityService;
+        private readonly IEntityService<Profile> _profilEntityService;
 
         public ProfileController(
-            IEntityService<User> userService, 
+            IEntityService<User> userEntityService,
+            IEntityService<Profile> profilEntityService,
             IProfileService profileService)
         {
             _profileService = profileService;
-            _userService = userService;
+            _userEntityService = userEntityService;
+            _profilEntityService = profilEntityService;
         }
         
-        // GET api/values
         [HttpGet]
-        public async Task<IActionResult> Get()
+        [Route("profile/{id}")]
+        [ProducesResponseType(typeof(Profile), 200)]
+        public IActionResult GetProfile(string id)
         {
-            var data = await _userService.GetAllAsync();
+            var data = _userEntityService.GetByIdAsync(id).Result;
             return Ok(data);
         }
 
-        // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]User value)
+        [Route("profile/create")]
+        [ProducesResponseType(typeof(long), 200)]
+        public IActionResult CreateNewProfile([FromBody] Profile profile)
         {
-            var data = await _userService.CreateElementAsync(value);
-            return Ok("Element created");
-        }
-
-        // PUT api/values/5
-        [HttpPut]
-        public async Task<IActionResult> Put([FromBody]User value)
-        {
-            var linesWritten = await _userService.UpdateElementAsync(value);
-            if (linesWritten == 1) return Ok("Element Updated");
-            return StatusCode(409, "Couldn't update Element");
-
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
-        {
-            await _userService.DeleteElementAsync(id);
-            return Ok("Element deleted");
+            var id = _profilEntityService.CreateElementAsync(profile).Result;
+            return Ok(id);
         }
 
     }
