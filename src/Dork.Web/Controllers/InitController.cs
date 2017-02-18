@@ -1,4 +1,5 @@
-﻿using Dork.Core.Domain;
+﻿using System.Collections.Generic;
+using Dork.Core.Domain;
 using Dork.Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -21,6 +22,8 @@ namespace Dork.Web.Controllers
 
         [HttpGet]
         [Route("user")]
+        [ProducesResponseType(typeof(IEnumerable<User>), 200)]
+        [ProducesResponseType(typeof(void), 500)]
         public async Task<IActionResult> GetAllUsers()
         {
             var data =await _userService.GetAllAsync();
