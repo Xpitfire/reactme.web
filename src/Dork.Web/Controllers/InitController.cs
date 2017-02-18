@@ -22,8 +22,6 @@ namespace Dork.Web.Controllers
 
         [HttpGet]
         [Route("user")]
-        [ProducesResponseType(typeof(IEnumerable<User>), 200)]
-        [ProducesResponseType(typeof(void), 500)]
         public IActionResult GetAllUsers()
         {
             var data = _userService.GetAllAsync();
