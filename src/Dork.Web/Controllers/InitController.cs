@@ -24,9 +24,9 @@ namespace Dork.Web.Controllers
         [Route("user")]
         [ProducesResponseType(typeof(IEnumerable<User>), 200)]
         [ProducesResponseType(typeof(void), 500)]
-        public async Task<IActionResult> GetAllUsers()
+        public IActionResult GetAllUsers()
         {
-            var data =await _userService.GetAllAsync();
+            var data = _userService.GetAllAsync();
 
             return Ok(data);
         }
